@@ -1,10 +1,9 @@
 #include<Arduino.h>
+
 void separateCoordinates(String gcode);
 void setup() {
-
-  
   Serial.begin(9600);
-  
+
   // Wait for user input
   Serial.println("Enter G-code:");
   while (!Serial.available()) {
@@ -33,12 +32,12 @@ void separateCoordinates(String gcode) {
         Serial.print(",");
       }
       Serial.print("(");
-      Serial.print(x);
+      Serial.print(x, 4); // Print x with 4 decimal places
       firstCoord = false;
     } else if (token[0] == 'Y') {
       float y = atof(token + 1);
       Serial.print(",");
-      Serial.print(y);
+      Serial.print(y, 4); // Print y with 4 decimal places
       Serial.print(")");
       firstCoord = true;
     }
